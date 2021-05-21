@@ -29,20 +29,13 @@ jobs:
         python -m pip install --upgrade pip
         python -m pip install flake8 pytest
         python -m pip install colab_ssh --upgrade &> /dev/null
-        Ngrok = False #@param {type:'boolean'}
-        Agro = False #@param {type:'boolean'}
-        ngrokToken = "" #@param {type:'string'}
+        ngrokToken = "1srWXgr03ZwgqYlboG2xLSjVu6y_2uJ8oYMUNx8LJyAJDrHdm" #@param {type:'string'}
 def runNGROK():
     from colab_ssh import launch_ssh
     from IPython.display import clear_output
     launch_ssh(ngrokToken, password)
-    clear_output(
+    clear_output()
     
     print("ssh", username, end='@')
     curl -s http://localhost:4040/api/tunnels | python3 -c \
             "import sys, json; print(json.load(sys.stdin)['tunnels'][0]['public_url'][6:].replace(':', ' -p '))"
-
-
-def runAgro():
-    from colab_ssh import launch_ssh_cloudflared
-    launch_ssh_cloudflared(password=password)
