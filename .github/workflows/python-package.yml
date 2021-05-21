@@ -28,23 +28,21 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         python -m pip install flake8 pytest
-        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-pip install colab_ssh --upgrade &> /dev/null
-
-Ngrok = False #@param {type:'boolean'}
-Agro = False #@param {type:'boolean'}
+        python -m pip install colab_ssh --upgrade &> /dev/null
+        Ngrok = False #@param {type:'boolean'}
+        Agro = False #@param {type:'boolean'}
 
 
-#@markdown Copy authtoken from https://dashboard.ngrok.com/auth (only for ngrok)
-ngrokToken = "" #@param {type:'string'}
+       #@markdown Copy authtoken from https://dashboard.ngrok.com/auth (only for ngrok)
+       ngrokToken = "" #@param {type:'string'}
 
 
 def runNGROK():
     from colab_ssh import launch_ssh
     from IPython.display import clear_output
     launch_ssh(ngrokToken, password)
-    clear_output()
-
+    clear_output(
+    
     print("ssh", username, end='@')
     curl -s http://localhost:4040/api/tunnels | python3 -c \
             "import sys, json; print(json.load(sys.stdin)['tunnels'][0]['public_url'][6:].replace(':', ' -p '))"
