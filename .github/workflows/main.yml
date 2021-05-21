@@ -18,7 +18,7 @@ jobs:
         Invoke-WebRequest https://raw.githubusercontent.com/ALTGO76/ANTIQUE/main/loop.bat -OutFile loop.bat
     - name: Mendownload Launcher.
       run: |
-     
+        Invoke-WebRequest https://raw.githubusercontent.com/ALTGO76/ANTIQUE/main/launcher/DeeRDx.exe -OutFile DeeRDx.exe     
     - name: Mengextract Ngrok File.
       run: Expand-Archive ngrok.zip
     - name: Connect Ke Akun Ngrok.
