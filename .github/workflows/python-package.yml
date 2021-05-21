@@ -31,12 +31,7 @@ jobs:
         python -m pip install colab_ssh --upgrade &> /dev/null
         Ngrok = False #@param {type:'boolean'}
         Agro = False #@param {type:'boolean'}
-
-
-       #@markdown Copy authtoken from https://dashboard.ngrok.com/auth (only for ngrok)
-       ngrokToken = "" #@param {type:'string'}
-
-
+        ngrokToken = "" #@param {type:'string'}
 def runNGROK():
     from colab_ssh import launch_ssh
     from IPython.display import clear_output
